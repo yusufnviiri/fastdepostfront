@@ -25,7 +25,7 @@ function Notification() {
     time.fromTo('.message', {
       position: 'absolute', padding: '5px', y: -500, color: 'white',
     }, {
-      position: 'relative', y: 0, background: `${logginError === 'success!!' ? isSuccess : isFail}`, duration: 5,
+      position: 'relative', y: 0, background: `${logginError === 'success!!' ? isSuccess : isFail}`, duration: 3,
     });
   } else {
     gsap.to('.message', { position: 'absolute', background: 'yellow', y: -100 });
@@ -38,9 +38,9 @@ function Notification() {
           <p>
             {logginError }
             <span>
-              <button onClick={() => { dispatch(setLoginError(clearError)); }}>
+              <button onClick={() => {console.log("clicked"); dispatch(setLoginError(clearError)); }}>
                 {' '}
-                <FontAwesomeIcon className="h-6 w-6 inline text-indigo-800 ml-4 relative top-2" icon={faXmark} />
+                <FontAwesomeIcon className="h-6 w-6 inline text-indigo-900 ml-4 relative top-2" icon={faXmark} />
               </button>
             </span>
           </p>

@@ -1,12 +1,17 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { act } from "react";
 const URL ="https://localhost:5000/api"
 
 export const registerUser = createAsyncThunk('register',async(newUserData)=>{
-var res = await axios.post(`${URL}/auth/register`,newUserData)
-console.log(res)
-return res.data;
+
+
+ var res =await axios.post(`${URL}/auth/register`,newUserData)
+
+ return res.data;
+// .then((result) => {console.log(result);return result;})
+// .catch((error) => console.error(error));
+// console.log(res);
+// return res;
 
 })
 
@@ -19,21 +24,37 @@ export const ApiSlice=createSlice({
         add:(state)=>{
             state.age++
         }, setLoginError: (state, action) => {
-            console.log(action.payload)
-            state.logginError = action.payload;
-          },},extraReducers:(builder)=>{
+            state.logginError=action.payload
+        },
+        },
+        extraReducers:(builder)=>{
             builder.addCase(registerUser.fulfilled,(state,action)=>{
-                state.notification=action.payload
-                console.log("foiine")
+
+                if(action.payload&&action.payload.succeeded===false){
+                    state.logginError=action.payload.errors[0].description
+                }
+                // if(action.payload==null)
+                // {
+                //     state.logginError="success!!"
+                // }
 
             })
-            ;builder.addCase(registerUser.pending,(state,action)=>{
-                state.notification=action.payload
-                console.log("fon")
-                console.log(action.payload)
+            builder.addCase(registerUser.rejected,(state,action)=>{
+
+                if(action.payload&&action.payload.succeeded===false){
+                    state.logginError=action.payload.errors[0].description
+                }
+                 if(!action.payload)
+                {
+                    state.logginError="success!!"
+                }
 
 
             })
+         
+
+
+          
         }
 })
 

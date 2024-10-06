@@ -1,11 +1,9 @@
-import React,{useEffect} from 'react'
-import { useDispatch,useSelector } from 'react-redux'
-import { add } from '../redux/ApiSlice'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 function Home() {
-    const dispatch = useDispatch();
-    const age = useSelector((state)=>state.ApiSlice.age)
+    // const dispatch = useDispatch();
+    // const age = useSelector((state)=>state.ApiSlice.age)
   return (
     <>
     <div className='relative'>

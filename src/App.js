@@ -1,4 +1,5 @@
 import './App.css';
+import Menu from './Components/Menu';
 import Home from './Components/Home';
 import { Route,Routes } from 'react-router-dom';
 import Register from './Components/Register';
@@ -9,10 +10,12 @@ function App() {
     <div className="App">
             <Notification />
 
-      <Home/>
-      <Register/>
+      <Menu/>
+      {/* <Register/> */}
   <Routes>
-    {/* <Route path='/' element={<Home/>}/> */}
+    <Route path='/' element={<Home/>}/>
+    <Route path='/register' element={<Register/>}/>
+
   </Routes>
     </div>
   );

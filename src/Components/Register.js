@@ -8,10 +8,7 @@ import {  registerUser} from '../redux/ApiSlice';
 
 function Register() {
 
-  useEffect(()=>{
-role.push(roleString)
-
-  },[roleString.length])
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,7 +22,10 @@ role.push(roleString)
   const userName = email;
   const role = [];
   
-
+  useEffect(()=>{
+    role.push(roleString)
+    
+      },[roleString.length])
   const userdetails = {
     firstName,
     lastName,
@@ -38,13 +38,13 @@ role.push(roleString)
     // let error = JSON.parse(localStorage.getItem("logginError"));
 
     e.preventDefault();
-    const myresponse = async () => {
-     
-        await dispatch(registerUser(userdetails));
-        navigate('/', { replace: true });
-      
-    };
-    myresponse();
+
+
+    dispatch(registerUser(userdetails))
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+    console.log("oete");
+    navigate('/', { replace: true });
   }
 
   return (

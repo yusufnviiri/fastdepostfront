@@ -3,7 +3,7 @@ import axios from "axios";
 const URL ="https://localhost:5000/api"
 
 export const registerUser = createAsyncThunk('register',async(newUserData)=>{
-var res = await axios.post(`${URL}/auth/register`)
+var res = await axios.post(`${URL}/auth/register`,newUserData)
 return res.data;
 
 })

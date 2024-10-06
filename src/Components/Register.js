@@ -1,28 +1,38 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {  registerUser} from '../redux/ApiSlice';
 // import { register } from "../../redux/ApiSlice"
 
 function Register() {
+
+  useEffect(()=>{
+role.push(roleString)
+
+  },[roleString.length])
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
+  const [phoneNumber, setphoneNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
-  const [password, setpassword] = useState('');
 
+  const [roleString, setRoleString] = useState('');
+  const [password, setpassword] = useState('');
+  const userName = email;
+  const role = [];
+  
 
   const userdetails = {
     firstName,
     lastName,
     password,
     email,
-    role,
+    roleString,
+    userName,
   };
   async function RegisterUser(e) {
     // let error = JSON.parse(localStorage.getItem("logginError"));
@@ -42,11 +52,7 @@ function Register() {
       <div className="w-[30%] m-auto  login_form">
 
         <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">   REGISTER</h4>
-        <form
-          onSubmit={(e) => {
-            RegisterUser(e);
-          }}
-        >
+        <form onSubmit={(e) => {RegisterUser(e);}}>
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">First Name</label>
             <input
@@ -72,15 +78,28 @@ function Register() {
               type="text"
             />
           </div>
+
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Title</label>
+            <label className="font-bold   ml-2 block">Phone Number</label>
+            <input
+              required
+              type="text"
+              value={phoneNumber}
+              onChange={(e) => {
+                setphoneNumber(e.target.value);
+              }}
+              className=" w-full   py-3 text-center"
+            />
+          </div>
+          <div className="mb-1  ">
+            <label className="font-bold   ml-2 block">Role</label>
 
             <select
               className="font-bold    block w-full"
               required
-              value={role}
+              value={roleString}
               onChange={(e) => {
-                setRole(e.target.value);
+                setRoleString(e.target.value);
               }}
             >
               <option className=" font-thin text-red-900">...select...</option>

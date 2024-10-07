@@ -22,7 +22,7 @@ function App() {
       {/* <Register/> */}
   <Routes>
     <Route path='/' element={<Home/>}/>
-    <Route path='/fetchdata' element={<FetchExcelData/>}/>
+    <Route path='/upload' element={<FetchExcelData/>}/>
     <Route path='/register' element={<Register/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/deposit' element={<Deposit/>}/>

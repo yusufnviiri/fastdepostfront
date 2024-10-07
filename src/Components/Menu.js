@@ -31,6 +31,7 @@ function Menu() {
 
            <Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/withdraws">Withdraws</Link>
            <Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/deposits">Deposits</Link>
+           <Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/upload">Add ExcelFile</Link>
        
           
          <button className='lg:mr-3 mr-[3px] bg-red-700 px-2 py-[3px] rounded' onClick={()=>{Logout()}}>Logout</button></div>:""}</div>

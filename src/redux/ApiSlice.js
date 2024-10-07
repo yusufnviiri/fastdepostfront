@@ -7,6 +7,20 @@ const getToken =  () => {
     token =  sessionStorage.getItem("token"); 
     return token;
   };
+
+    // add excell file
+    export const addExcelFile = createAsyncThunk('fetchExcel',async(excelFile)=>{
+      token =  getToken();
+      const formData = new FormData();
+      formData.append('file',excelFile)
+
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      var res =await axios.post(`${URL}/deposits/fetchExceldata`,formData,config)
+      return res.data;
+     })
   // create deposit
   export const createDeposit = createAsyncThunk('deposit',async(deposit)=>{
     token =  getToken();
@@ -106,7 +120,10 @@ export const ApiSlice=createSlice({
               }); 
               builder.addCase(createWithdraw.fulfilled,(state,action)=>{
                 state.logginError="success!!"
-            })         
+            })  
+            builder.addCase(addExcelFile.fulfilled,(state,action)=>{
+              state.logginError="success!!"
+          })       
         }
 })
 

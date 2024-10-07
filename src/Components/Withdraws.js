@@ -13,7 +13,7 @@ function Withdraws() {
     dispatch(getMemberWithdraws());
 
   
-  });
+  },[]);
 
   return (
     <>
@@ -23,29 +23,22 @@ function Withdraws() {
       {withdraws.length > 0 ? withdraws.map((item) => (
         <div
           key={item.withdrawId}
-          className="flex list_data   flex-col justify-start my-5 text-left w-1/2 m-auto "
-        >
-          <p className="font-semibold">
-            Account :
-            <span className="font-bold">{item.account.accountDescription}</span>
-          </p>
-          <p className="font-semibold">
-            Available Balance:
-            <span className="font-bold">{item.account.currentBalance}</span>
-          </p>
-          {' '}
-          <p className="font-semibold">
-            Amount:
-            <span className="font-bold">
-              {item.amount}
-            </span>
-          </p>
-          <p className="font-semibold">
-            Withdraw Date:
-            <span className="font-bold">{item.stringDate}</span>
-          </p>
-        </div>
-      )) : (<p>No account in database</p>)}
+          className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto "
+          >
+            <p className="font-semibold">
+              Amount:
+              <span className="font-bold">{item.amount}</span>
+            </p>
+            <p className="font-semibold">
+              Available Balance:
+              <span className="font-bold">{item.balance}</span>
+            </p>{" "}
+            <p className="font-semibold">
+              Deposit Date:
+              <span className="font-bold">{item.transactionDate}</span>
+            </p>
+          </div>
+      )) : (<p>No Withdraw in database</p>)}
 
     </>
   );

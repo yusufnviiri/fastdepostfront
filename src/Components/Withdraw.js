@@ -3,30 +3,24 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getMemberAccounts, memberWithdraw } from '../../redux/ApiSlice';
+import { createWithdraw } from '../redux/ApiSlice';
 
 const Withdraw = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const accounts = useSelector((state) => state.ApiSlice.accounts);
-  const notification = useSelector((state) => state.ApiSlice.notification);
+
 
   useEffect(() => {
     dispatch(getMemberAccounts());
-    if (accounts.length < 1) {
-      navigate('/new-account', { replace: true });
-    }
+   
   });
 
   const [amount, setAmount] = useState(0);
-  const [accountId, setAccountId] = useState('');
-  const withdrawDetails = { amount, accountId };
+  const withdrawDetails = { amount};
   const saveWithdraw = (e) => {
     e.preventDefault();
-    dispatch(memberWithdraw(withdrawDetails));
-    if (notification !== '') {
-      navigate('/accounts', { replace: true });
-    }
+    dispatch(createWithdraw(withdrawDetails));
+
   };
   return (
     <>
@@ -34,34 +28,7 @@ const Withdraw = () => {
       <div className="w-[30%] m-auto  login_form">
         <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Account Withdraw  </h4>
         <form onSubmit={(e) => { saveWithdraw(e); }}>
-          <div className="mb-1  ">
-            <label className="font-bold   ml-2 block"> Select Account </label>
-
-            <select
-              className="font-bold    block w-full"
-              required
-              value={accountId}
-              onChange={(e) => {
-                setAccountId(e.target.value);
-              }}
-            >
-              <option className=" font-thin text-red-900">...select...</option>
-              {accounts.length > 0 ? (
-                accounts.map((item) => (
-                  <option
-                    value={item.accountId}
-                    key={item.accountId}
-                    className="font-bold"
-                  >
-                    {item.accountDescription}
-                  </option>
-
-                ))
-              ) : (
-                <option>No account in database</option>
-              )}
-            </select>
-          </div>
+        
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">Amount</label>
             <input

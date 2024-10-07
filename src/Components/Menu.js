@@ -26,10 +26,12 @@ function Menu() {
       <div  className='border-none bg-transparent flex'> 
   {route=="/register"?<Link className='mr-3 hover:text-yellow-300' to="/login">Login</Link>:<Link className='mr-3 py-[3px] hover:text-yellow-300' to="/register">Register</Link>}         
         {userName!=null? <div className='border-none bg-transparent'>
-           <Link className='mr-3 hover:text-yellow-300' to="/login">Withdraw</Link>
-           <Link className='mr-3 hover:text-yellow-300' to="/deposit">Deposit</Link>
-           <Link className='mr-3 hover:text-yellow-300' to="/login">Withdraws</Link>
+        <Link className='mr-3 hover:text-yellow-300' to="/deposit">Deposit</Link>
+        <Link className='mr-3 hover:text-yellow-300' to="/withraw">Withdraw</Link>
+
+           <Link className='mr-3 hover:text-yellow-300' to="/withraws">Withdraws</Link>
            <Link className='mr-3 hover:text-yellow-300' to="/deposits">Deposits</Link>
+       
           
          <button className='mr-3 bg-red-700 px-2 py-[3px] rounded' onClick={()=>{Logout()}}>Logout</button></div>:""}</div>
         <p className=''> 

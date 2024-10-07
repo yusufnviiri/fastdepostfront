@@ -17,7 +17,7 @@ const getToken =  () => {
     return res.data;
    })
     // get deposits 
-   export const getMemberDeposits = createAsyncThunk('dsacco/deposits', async () => {
+   export const getMemberDeposits = createAsyncThunk('deposits', async () => {
     token =  getToken();
     const config = {
       headers: { Authorization: `Bearer ${token}` },      
@@ -25,6 +25,25 @@ const getToken =  () => {
     const res = await axios.get(`${URL}/deposits/userDeposits`, config);
     return res.data;
 })
+
+ // create withdraw
+ export const createWithdraw = createAsyncThunk('withdraws',async(withdraw)=>{
+    token =  getToken();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    var res =await axios.post(`${URL}/withdraws/create`,withdraw,config)
+    return res.data;
+   })
+       // get withdraws
+       export const getMemberWithdraws = createAsyncThunk('withdraws', async () => {
+        token =  getToken();
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },      
+        };
+        const res = await axios.get(`${URL}/deposits/userDeposits`, config);
+        return res.data;
+    })
 // register user
 export const registerUser = createAsyncThunk('register',async(newUserData)=>{
  var res =await axios.post(`${URL}/auth/register`,newUserData)
@@ -80,6 +99,9 @@ export const ApiSlice=createSlice({
             })
             builder.addCase(getMemberDeposits.fulfilled, (state, action) => {
                 state.deposits = action.payload;
+              }); 
+              builder.addCase(getMemberWithdraws.fulfilled, (state, action) => {
+                state.withdraws = action.payload;
               });          
         }
 })

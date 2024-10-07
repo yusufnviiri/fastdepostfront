@@ -3,8 +3,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-import { getMemberWithdraws } from '../../redux/ApiSlice';
+import { getMemberWithdraws } from '../redux/ApiSlice';
 
 function Withdraws() {
   const navigate = useNavigate();
@@ -13,9 +12,7 @@ function Withdraws() {
   useEffect(() => {
     dispatch(getMemberWithdraws());
 
-    if (withdraws.length < 1) {
-      navigate('/withdraw', { replace: true });
-    }
+  
   });
 
   return (

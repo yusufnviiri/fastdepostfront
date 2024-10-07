@@ -5,8 +5,8 @@ import { Route,Routes } from 'react-router-dom';
 import Register from './Components/Register';
 import Notification from './Components/Notification'
 import Login from './Components/Login';
-import { useNavigate } from 'react-router-dom';
-
+import Deposit from './Components/Deposit';
+import Deposits from './Components/Deposits';
 function App() {
   return (
 
@@ -21,7 +21,8 @@ function App() {
     <Route path='/' element={<Home/>}/>
     <Route path='/register' element={<Register/>}/>
     <Route path='/login' element={<Login/>}/>
-
+    <Route path='/deposit' element={<Deposit/>}/>
+    <Route path='/deposits' element={<Deposits/>}/>
 
   </Routes>
     </div>

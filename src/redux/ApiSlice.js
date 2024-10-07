@@ -1,11 +1,36 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const URL ="https://localhost:5000/api"
+let token = ""
 
+const getToken =  () => {
+    token =  sessionStorage.getItem("token"); 
+    return token;
+  };
+  // create deposit
+  export const createDeposit = createAsyncThunk('deposit',async(deposit)=>{
+    token =  getToken();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    var res =await axios.post(`${URL}/deposits/create`,deposit,config)
+    return res.data;
+   })
+    // get deposits 
+   export const getMemberDeposits = createAsyncThunk('dsacco/deposits', async () => {
+    token =  getToken();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },      
+    };
+    const res = await axios.get(`${URL}/deposits`, config);
+    return res.data;
+})
+// register user
 export const registerUser = createAsyncThunk('register',async(newUserData)=>{
  var res =await axios.post(`${URL}/auth/register`,newUserData)
  return res.data;
 })
+//login user
 export const loginUser = createAsyncThunk('login',async(userDetails)=>{
     var res =await axios.post(`${URL}/auth/login`,userDetails)
     console.log(res)
@@ -50,9 +75,12 @@ export const ApiSlice=createSlice({
             builder.addCase(loginUser.rejected,(state,action)=>{
                 state.logginError="Wrong password or email"
             })
-
-
-          
+            builder.addCase(createDeposit.fulfilled,(state,action)=>{
+                state.logginError="success!!"
+            })
+            builder.addCase(getMemberDeposits.fulfilled, (state, action) => {
+                state.deposits = action.payload;
+              });          
         }
 })
 

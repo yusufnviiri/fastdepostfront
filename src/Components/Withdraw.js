@@ -10,10 +10,7 @@ const Withdraw = () => {
   const dispatch = useDispatch();
 
 
-  useEffect(() => {
-    dispatch(getMemberAccounts());
-   
-  });
+ 
 
   const [amount, setAmount] = useState(0);
   const withdrawDetails = { amount};
@@ -26,9 +23,14 @@ const Withdraw = () => {
     <>
 
       <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Account Withdraw  </h4>
-        <form onSubmit={(e) => { saveWithdraw(e); }}>
-        
+        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider"> Account Withdraw  </h4>
+        <form
+          onSubmit={(e) => {
+            saveWithdraw(e);
+          }}
+        >
+          
+
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">Amount</label>
             <input

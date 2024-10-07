@@ -27,7 +27,7 @@ const getToken =  () => {
 })
 
  // create withdraw
- export const createWithdraw = createAsyncThunk('withdraws',async(withdraw)=>{
+ export const createWithdraw = createAsyncThunk('withdraw',async(withdraw)=>{
     token =  getToken();
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -41,7 +41,7 @@ const getToken =  () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },      
         };
-        const res = await axios.get(`${URL}/deposits/userDeposits`, config);
+        const res = await axios.get(`${URL}/withdraws/userWithdraws`, config);
         return res.data;
     })
 // register user
@@ -100,9 +100,13 @@ export const ApiSlice=createSlice({
             builder.addCase(getMemberDeposits.fulfilled, (state, action) => {
                 state.deposits = action.payload;
               }); 
+            
               builder.addCase(getMemberWithdraws.fulfilled, (state, action) => {
                 state.withdraws = action.payload;
-              });          
+              }); 
+              builder.addCase(createWithdraw.fulfilled,(state,action)=>{
+                state.logginError="success!!"
+            })         
         }
 })
 

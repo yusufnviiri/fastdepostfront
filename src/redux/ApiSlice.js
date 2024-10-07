@@ -22,7 +22,7 @@ const getToken =  () => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },      
     };
-    const res = await axios.get(`${URL}/deposits`, config);
+    const res = await axios.get(`${URL}/deposits/userDeposits`, config);
     return res.data;
 })
 // register user

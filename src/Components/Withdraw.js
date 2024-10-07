@@ -16,7 +16,8 @@ const Withdraw = () => {
   const withdrawDetails = { amount};
   const saveWithdraw = (e) => {
     e.preventDefault();
-    dispatch(createWithdraw(withdrawDetails));
+    dispatch(createWithdraw(withdrawDetails)).then(()=>{navigate("/withdraws", { replace: true });
+  });;
 
   };
   return (

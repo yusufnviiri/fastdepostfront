@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { replace, useNavigate } from 'react-router-dom';
 import { createDeposit} from '../redux/ApiSlice';
 
 function Deposit() {
@@ -21,7 +21,8 @@ function Deposit() {
   };
   const saveDeposit = (e) => {
     e.preventDefault();
-    dispatch(createDeposit(depositDetails)).then(()=>{setAmount(1000000)});
+    dispatch(createDeposit(depositDetails)).then(()=>{navigate("/deposits", { replace: true });
+  });
   
   };
   return (

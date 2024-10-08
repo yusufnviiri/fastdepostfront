@@ -16,13 +16,9 @@ const FetchExcelData = () => {
       alert("No file selected");
       return;
   }
-  
+  console.log(file)
   dispatch(addExcelFile(file)).then(()=>{navigate("/withdraws", { replace: true });
-  });}
-
-  
-
- 
+  });} 
   return (
     <>
 
@@ -40,7 +36,7 @@ const FetchExcelData = () => {
             <input id='fileInput'
               required
               type='file'            
-              className=" w-full   py-3 text-center"
+              className=" w-full   pb-11 pt-3 px-3 text-center"
             />
           </div>
 

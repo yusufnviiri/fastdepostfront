@@ -21,11 +21,10 @@ function Deposits() {
       <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
         Member Deposits
       </h4>
-
       {deposits.length > 0 ? (
         deposits.map((item) => (
           <div
-            key={item.depositId}
+            key={item.Id}
             className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto "
           >
             <p className="font-semibold">

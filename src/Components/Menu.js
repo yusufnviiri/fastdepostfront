@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate,useLocation } from 'react-router-dom';
+import {  useDispatch } from 'react-redux';
+import { updateAccounts } from '../redux/ApiSlice';
 
 
 function Menu() {
   const userName = sessionStorage.getItem("UserName")
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
 
   function Logout() {
@@ -33,7 +36,7 @@ function Menu() {
            <Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/deposits">Deposits</Link>
            <Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/upload">Add ExcelFile</Link>
        
-          
+           <button className='lg:mr-3 mr-[3px] bg-yellow-500 px-2 py-[3px] rounded text-green-800 font-bold' onClick={()=>{dispatch(updateAccounts())}}>Update Accounts</button>
          <button className='lg:mr-3 mr-[3px] bg-red-700 px-2 py-[3px] rounded' onClick={()=>{Logout()}}>Logout</button></div>:""}</div>
         <p className='capitalize'> 
           User: <span className='text-green-100 lg:text-[0.99em] text-[0.69em]'>{userName!=null? userName:"User"}</span>

@@ -18,9 +18,20 @@ const getToken =  () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      var res =await axios.post(`${URL}/deposits/fetchExceldata`,formData,config)
+    
+      var res =await axios.post(`${URL}/deposits/uploadFile`,formData,config)
       return res.data;
      })
+
+         // update  accounts
+   export const updateAccounts = createAsyncThunk('updateAccounts', async () => {
+    token =  getToken();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },      
+    };
+    const res = await axios.get(`${URL}/deposits/fetchExceldata`, config);
+    return res.data;
+})
   // create deposit
   export const createDeposit = createAsyncThunk('deposit',async(deposit)=>{
     token =  getToken();
@@ -123,7 +134,10 @@ export const ApiSlice=createSlice({
             })  
             builder.addCase(addExcelFile.fulfilled,(state,action)=>{
               state.logginError="success!!"
-          })       
+          }) 
+          builder.addCase(updateAccounts.fulfilled,(state,action)=>{
+            state.logginError="success!!"
+        })        
         }
 })
 

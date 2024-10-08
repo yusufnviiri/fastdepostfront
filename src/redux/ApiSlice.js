@@ -20,7 +20,7 @@ const getToken =  () => {
       };
     
       var res =await axios.post(`${URL}/deposits/uploadFile`,formData,config)
-      return res.data;
+      return res;
      })
 
          // update  accounts

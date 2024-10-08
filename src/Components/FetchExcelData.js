@@ -17,7 +17,7 @@ const FetchExcelData = () => {
       return;
   }
   console.log(file)
-  dispatch(addExcelFile(file)).then(()=>{navigate("/withdraws", { replace: true });
+  dispatch(addExcelFile(file)).then((res)=>{ console.log(res)  ; navigate("/withdraws", { replace: true });
   });} 
   return (
     <>

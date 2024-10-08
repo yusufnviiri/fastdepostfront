@@ -11,10 +11,8 @@ function Deposits() {
   const deposits = useSelector((state) => state.ApiSlice.deposits);
   useEffect(() => {
     dispatch(getMemberDeposits());
-    if (deposits.length < 1) {
-      navigate("/deposit", { replace: true });
-    }
-  });
+
+  },[]);
 
   return (
     <>

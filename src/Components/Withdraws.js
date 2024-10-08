@@ -10,9 +10,7 @@ function Withdraws() {
   const dispatch = useDispatch();
   const withdraws = useSelector((state) => state.ApiSlice.withdraws);
   useEffect(() => {
-    dispatch(getMemberWithdraws());
-
-  
+    dispatch(getMemberWithdraws());  
   },[]);
 
   return (

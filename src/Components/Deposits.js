@@ -40,7 +40,7 @@ function Deposits() {
           </div>
         ))
       ) : (
-        <p>No account in database</p>
+        <p>No Deposit in database</p>
       )}
     </>
   );

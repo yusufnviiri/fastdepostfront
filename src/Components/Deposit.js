@@ -57,7 +57,7 @@ function Deposit() {
         text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input
-              className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
+              className="uppercase  font-lobs text:[0.8em] sm:text-[0.91em] cursor-pointer text-yellow-300"
               type="submit"
             />
           </div>

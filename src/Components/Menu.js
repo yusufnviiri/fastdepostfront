@@ -10,7 +10,27 @@ function Menu() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+ const testApi=()=>{
+  
+fetch('https://sandbox.momodeveloper.mtn.com/disbursement/token/', {
+  method: 'POST',
+  // Request headers
+  // headers: {
+  //   //   'Authorization': '!rh2mpVRzVvZX5c',
+  //   //   'Cache-Control': 'no-cache',
+  //   //   'Ocp-Apim-Subscription-Key': '651b75c10a424a4f8ec5eec7d43dbcaf',
+  //   // }
+  //   }
 
+})
+.then(response => {
+  console.log(response.status);
+  console.log(response.text());
+  console.log(response);
+
+})
+.catch(err => console.error(err));
+ }
 
   function Logout() {
     sessionStorage.clear()
@@ -26,8 +46,12 @@ function Menu() {
     <div className='relative'>
 
     <nav className=' w-full bg-blue-800 py-2 text-slate-100 font-semibold uppercase font-roboto tracking-wider flex justify-between px-8 text-[0.49em] md:text-[0.7em] lg:text-[0.8em]'>
+   
+   
+
       <div  className='border-none bg-transparent flex font-mul'> 
-  {route==="/register"?<Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/login">Login</Link>:<Link className='lg:mr-3 mr-[3px] py-[3px] hover:text-yellow-300' to="/register">Register</Link>}         
+  {route==="/register"?<Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/login">Login</Link>:<Link className='lg:mr-3 mr-[3px]
+   py-[3px] hover:text-yellow-300' to="/register">Register</Link>}         
         {userName!=null? <div className='border-none bg-transparent'>
         <Link className='lg:mr-3 mr-[3px]  hover:text-yellow-300' to="/deposit">Deposit</Link>
         <Link className='lg:mr-3 mr-[3px] hover:text-yellow-300' to="/withdraw">Withdraw</Link>
@@ -48,6 +72,9 @@ function Menu() {
 {/* <h4>{age}</h4>
 
 <button onClick={()=>dispatch(add())} className='font-bold  bg-blue-700 text-slate-100 p-1 rounded'> Click To Add</button> */}
+
+
+
 
 </div>
     </>
